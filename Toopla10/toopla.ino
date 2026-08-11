@@ -36,12 +36,6 @@ const int colNum = 3;
 const int rowPin[rowNum] = { 2, 3, 4, 5 };
 const int colPin[colNum] = { 6, 7, 21 };
 
-// const byte keyMap[rowNum][colNum] = {
-//   { 0x61, 0x62, 0x63 }, // 1 5 9
-//   { 0x64, 0x65, 0x00 }, // 2 6 10
-//   { 0x68, 0x69, 0x00 }, // 3 7 11
-//   { 0x71, 0x72, 0x00 }, // 4 8 12
-// };
 
 const Shortcut keyMap[rowNum][colNum] = {
   { { MOD_GUI, 0 }, { MOD_GUI, 'z' }, { MOD_CTRL, 'c' } },  // 1 5 9
@@ -107,14 +101,12 @@ void loop() {
       if (currentState[i][j] != beforeState[i][j]) {
 
         if (currentState[i][j] == LOW) {
-          // bleKeyboard.press(keyMap[i][j]);
           if (keyMap[i][j].modifiers != 0)
             bleKeyboard.press(keyMap[i][j].modifiers);
 
           if (keyMap[i][j].key != 0)
             bleKeyboard.press(keyMap[i][j].key);
         } else {
-          // bleKeyboard.release(keyMap[i][j]);
           if (keyMap[i][j].key != 0)
             bleKeyboard.release(keyMap[i][j].key);
 
